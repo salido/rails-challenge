@@ -21,7 +21,7 @@ This challenge is provided to help assess a candidate's development skills. Ther
 ## Challenge Instructions
 
 ### Objective
-Create a basic Rails app that sources data from a 3rd party API and presents a nice UI for a user to interact with the data.
+Build a Rails app that sources data from a 3rd party API and provides a clean and usable UI to interact with the data.
 
 ### Business Requirements
 
@@ -34,14 +34,24 @@ Create a basic Rails app that sources data from a 3rd party API and presents a n
 
 ### To Do
 
-1. Create the appropriate data models to store wine products based the wine.com API Object Dictionary (https://api.wine.com/wiki/api-object-dictionary).
-  * NOTE: Your models need *not* be comprehensive. Just the basic product data will do.
-2. Create a very basic web UI that does the following:
-  * CRUD a wine product.
-  * Present a view showing a paginated, searchable list of wine products.
-    * This view should have a search box at the top that will filter the list as the user types.
-  * Present a view that allows the user to load data from the wine.com API. This view should:
+1. Create the appropriate data models to store wine products based the [wine.com API Object Dictionary](https://api.wine.com/wiki/api-object-dictionary).
+  * Your models should include appropriate validations to prevent incomplete or inconsistent data.
+  * Your models need *not* be totally comprehensive. Just the main product data will do.
+2. Create a website that conforms to the following points:
+  * Implement a front-end framework of your choice to provide a clean and usable UI.
+    * The UI should look polished and be easy to use and navigate. It should handle user errors gracefully and provide informative messages when necessary.
+    * BONUS POINTS: Make it [responsive](https://en.wikipedia.org/wiki/Responsive_web_design).
+  * Implement appropriate views to enable the user to CRUD wine products.
+  * Implement a view showing a paginated, searchable list that includes all wine products in the database. This view should:
+    * Load one page at a time into the DOM. When navigating between pages, it should use AJAX to load the next page.
+    * Display the current page number and total number of pages (e.g. "Page 2 of 7").
+    * Present a search box at the top that will filter the list as the user types to include products in the database that match the search term. It should display no results until the user has entered at least 2 characters.
+    * BONUS POINTS: Allow the user to also filter the product list by Varietal or Vineyard.
+    * BONUS POINTS: Implement the product search using [Amazon CloudSearch](https://aws.amazon.com/cloudsearch).
+  * Implement a view that allows the user to load data from the wine.com API. This view should:
+    * Allow the user to specify how many products to load from the wine.com API (default should be 500).
+    * Present a button that pulls in fresh data from the wine.com API. This should overwrite any existing wine.com data in our database.
     * Present a button that clears out the existing wine.com data (but leaves the user-submitted data intact).
-    * Present a button that loads fresh data from the wine.com API. This should overwrite any existing wine.com data in our database.
-    * When a button is pressed, use AJAX and present the user with some sort of modal "loading" indicator until the operation is complete.
+    * When either button is pressed, present the user with a loading indicator until the operation is complete.
+    * BONUS POINTS: Display a progress bar that reflects actual progress when loading data from the wine.com API.
 3. Write some basic Rspec tests for your code.
